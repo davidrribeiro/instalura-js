@@ -1,43 +1,39 @@
 import React from "react";
-import * as S from "./styles";
-import Logo from "components/Logo";
-import Button from "components/Button";
+import Logo from "../Logo";
+import { Button } from "../Button";
+import { MenuWrapper } from "./styles";
 
-const Menu = () => {
-  const links = [
-    {
-      text: "Home",
-      url: "/",
-    },
-    {
-      text: "Perguntas frequentes",
-      url: "/faq",
-    },
-    {
-      text: "Sobre",
-      url: "/sobre",
-    },
-  ];
+export default function Menu() {
   return (
-    <S.NavWrapper>
-      <S.Logo>
+    <MenuWrapper>
+      <MenuWrapper.LeftSide>
+        {" "}
+        {/* MenuWrapper.LeftSide */}
         <Logo />
-      </S.Logo>
-      <S.Links>
-        {links.map((link, index) => (
-          <li key={index}>
-            <a href={link.url}>{link.text}</a>
+      </MenuWrapper.LeftSide>
+      <MenuWrapper.CentralSide as="ul">
+        {" "}
+        {/* MenuWrapper.CentralSide */}
+        {[
+          { url: "/", name: "Home" },
+          { url: "/faq", name: "Perguntas Frequentes" },
+          { url: "/sobre", name: "Sobre" },
+        ].map((link) => (
+          <li key={link.url}>
+            <a href={link.url}>{link.name}</a>
           </li>
         ))}
-      </S.Links>
-      <S.CTA>
-        <Button background={true}>Entrar</Button>
-        <Button color="primary" background={false}>
+      </MenuWrapper.CentralSide>
+      <MenuWrapper.RightSide>
+        {" "}
+        {/* MenuWrapper.RightSide */}
+        <Button type="button" ghost variant="secondary.main">
+          Entrar
+        </Button>
+        <Button type="button" variant="primary.main">
           Cadastrar
         </Button>
-      </S.CTA>
-    </S.NavWrapper>
+      </MenuWrapper.RightSide>
+    </MenuWrapper>
   );
-};
-
-export default Menu;
+}

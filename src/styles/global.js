@@ -1,4 +1,5 @@
 import { createGlobalStyle, css } from "styled-components";
+import { normalize } from "styled-normalize";
 
 const GlobalStyles = createGlobalStyle`
 @font-face {
@@ -34,16 +35,24 @@ const GlobalStyles = createGlobalStyle`
     -moz-osx-font-smoothing: grayscale;
   }
 
-  ${({ theme }) => css`
-    html {
-      font-size: 62.5%;
-    }
+  ${normalize}
 
-    body {
-      font-family: "Rubik";
-      background: #fff;
-    }
-  `}
+  html, body {
+    display: flex;
+    min-height: 100vh;
+    width: 100%;
+  }
+
+  #__next {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+  }
+
+  body {
+    font-family: {({theme}) => theme.fontFamily};
+    background: #fff;
+  }
 `;
 
 export default GlobalStyles;
